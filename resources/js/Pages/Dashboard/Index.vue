@@ -22,8 +22,7 @@ import { Head } from "@inertiajs/vue3";
                     >
                         <ContactCard
                             v-for="contact in contacts"
-                            :name="contact.name"
-                            :email="contact.email"
+                            :contact="contact"
                             :key="contact.id"
                         />
                     </div>
