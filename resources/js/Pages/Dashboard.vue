@@ -16,8 +16,17 @@ import { Head } from '@inertiajs/vue3';
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900"></div>
                 </div>
+ 
+
                 
             </div>
         </div>
     </AuthenticatedLayout>
 </template>
+<script>
+export default {
+    props: {
+        contacts: Array
+    }
+};
+</script>
