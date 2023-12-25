@@ -9,6 +9,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Dashboard/Index');
+        $contacts = auth()->user()->contacts()->latest()->get();
+        return Inertia::render('Dashboard/Index', [
+            'contacts' => $contacts,
+        ]);
     }
 }
