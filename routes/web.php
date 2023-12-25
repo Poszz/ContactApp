@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
+    Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/contact/show/{contactId}', [ContactController::class, 'show'])->name('contact.show');
 });
 

@@ -107,16 +107,38 @@
 import { Head } from "@inertiajs/vue3";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { ref } from "vue";
+</script>
 
-const contact = ref({
-    name: "",
-    email: "",
-    phone: "",
-    address: "",
-    desc: "",
-});
+<script>
+export default {
+    components: {
+        Head,
+        AuthenticatedLayout,
+    },
 
-function submitForm() {
-    this.$inertia.post(route("contact.store"), this.contact);
-}
+    data() {
+        return {
+            contact: {
+                name: "",
+                email: "",
+                phone: "",
+                address: "",
+                desc: "",
+            },
+        };
+    },
+
+    methods: {
+        submitForm() {
+            this.$inertia.post(route("contact.store"), this.contact);
+            this.$swal.fire({
+                title: "Added!",
+                text: "Contact has been added",
+                icon: "success",
+                timer: 1000,
+                showConfirmButton: false,
+            });
+        },
+    },
+};
 </script>
