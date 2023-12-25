@@ -23,4 +23,12 @@ class ContactController extends Controller
 
         return back()->with('success', 'Contact created.');
     }
+
+    public function show($id)
+    {
+        $contact = auth()->user()->contacts()->findOrFail($id);
+        return Inertia::render('Contact/Show', [
+            'contact' => $contact,
+        ]);
+    }
 }
