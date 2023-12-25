@@ -6,6 +6,24 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Contact Details
             </h2>
+
+            <div class="flex">
+                <div class="ms-auto">
+                    <Link
+                        :href="route('contact.edit', contact.id)"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none cursor-pointer"
+                    >
+                        Edit Contact
+                    </Link>
+                    <!-- Button for Delete -->
+                    <button
+                        @click="confirmDelete"
+                        class="inline-flex items-center px-4 mx-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none"
+                    >
+                        Delete Contact
+                    </button>
+                </div>
+            </div>
         </template>
 
         <div class="py-12">
@@ -42,4 +60,40 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 defineProps({
     contact: Object,
 });
+</script>
+
+<script>
+export default {
+    components: {
+        AuthenticatedLayout,
+    },
+
+    methods: {
+        confirmDelete() {
+            this.$swal
+                .fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Yes, delete it!",
+                    cancelButtonText: "No, cancel!",
+                    reverseButtons: true,
+                })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        this.$inertia.delete(
+                            this.route("contact.destroy", this.contact.id)
+                        );
+                    } else if (result.dismiss === "cancel") {
+                        this.$swal.fire(
+                            "Cancelled",
+                            "Your contact is safe :)",
+                            "error"
+                        );
+                    }
+                });
+        },
+    },
+};
 </script>

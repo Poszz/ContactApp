@@ -46,4 +46,11 @@ class ContactController extends Controller
             'contact' => $contact,
         ]);
     }
+
+    public function destroy($id)
+    {
+        $contact = auth()->user()->contacts()->findOrFail($id);
+        $contact->delete();
+        return inertia()->location(route('dashboard'));
+    }
 }
