@@ -38,7 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/contact/create', [ContactController::class, 'create'])->name('contact.create');
+    Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/contact/show/{contactId}', [ContactController::class, 'show'])->name('contact.show');
+    Route::get('/contact/edit/{contactId}', [ContactController::class, 'edit'])->name('contact.edit');
+    Route::delete('/contact/destroy/{contactId}', [ContactController::class, 'destroy'])->name('contact.destroy');
+    Route::put('/contact/update/{contactId}', [ContactController::class, 'update'])->name('contact.update');
 });
 
 require __DIR__ . '/auth.php';

@@ -5,11 +5,6 @@
                 <div
                     class="my-2 p-1 bg-white flex border border-gray-200 rounded"
                 >
-                    <div class="flex flex-auto flex-wrap"></div>
-                    <input
-                        placeholder="Search by position"
-                        class="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-                    />
                     <div
                         class="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200"
                     >
@@ -40,6 +35,7 @@
                 <div class="flex flex-col w-full">
                     <div
                         class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-teal-100"
+                        @click="toContact"
                     >
                         <div
                             class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100"
@@ -51,18 +47,18 @@
                                     <img
                                         class="rounded-full"
                                         alt="A"
-                                        src="https://api.dicebear.com/7.x/pixel-art/svg?seed={{ name }}"
+                                        src="https://api.dicebear.com/7.x/pixel-art/svg?seed={{ contact.name }}"
                                     />
                                 </div>
                             </div>
                             <div class="w-full items-center flex">
                                 <div class="mx-2 -mt-1">
-                                    <slot name="name">{{ name }}</slot>
+                                    <slot name="name">{{ contact.name }}</slot>
                                     <div
                                         class="text-xs truncate w-full normal-case font-normal -mt-1 text-gray-500"
                                     >
                                         <slot name="email">
-                                            {{ email }}
+                                            {{ contact.email }}
                                         </slot>
                                     </div>
                                 </div>
@@ -78,8 +74,12 @@
 <script>
 export default {
     props: {
-        name: String,
-        email: String,
+        contact: Object,
+    },
+    methods: {
+        toContact() {
+            this.$inertia.visit(route("contact.show", this.contact.id));
+        },
     },
 };
 </script>
