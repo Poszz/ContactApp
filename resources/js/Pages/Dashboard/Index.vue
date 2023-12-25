@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import ContactCard from "./Components/ContactCard.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 </script>
 
 <template>
@@ -9,9 +9,19 @@ import { Head } from "@inertiajs/vue3";
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                My Contacts
-            </h2>
+            <div class="flex">
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                    My Contacts
+                </h2>
+                <div class="ms-auto">
+                    <Link
+                        :href="route('contact.create')"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none"
+                    >
+                        Add Contact
+                    </Link>
+                </div>
+            </div>
         </template>
 
         <div class="py-12">
