@@ -13,6 +13,25 @@ class ContactController extends Controller
         return Inertia::render('Contact/Create');
     }
 
+    public function edit($id)
+    {
+        $contact = auth()->user()->contacts()->findOrFail($id);
+        return Inertia::render('Contact/Edit', [
+            'contact' => $contact,
+        ]);
+    }
+    public function update(Request $request, $id)
+    {
+        $contact = auth()->user()->contacts()->findOrFail($id);
+        $contact->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'desc' => $request->desc,
+        ]);
+        return inertia()->location(route('contact.show', $contact->id));
+    }
     public function store(Request $request)
     {
         $request->validate([

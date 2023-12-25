@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/contact/show/{contactId}', [ContactController::class, 'show'])->name('contact.show');
     Route::get('/contact/edit/{contactId}', [ContactController::class, 'edit'])->name('contact.edit');
     Route::delete('/contact/destroy/{contactId}', [ContactController::class, 'destroy'])->name('contact.destroy');
+    Route::put('/contact/update/{contactId}', [ContactController::class, 'update'])->name('contact.update');
 });
 
 require __DIR__ . '/auth.php';
