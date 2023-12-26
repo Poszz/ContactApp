@@ -8,5 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contact extends Model
 {
-    use HasFactory, SoftDeletes;
+
+    protected $guarded = [];
+    use HasFactory;
 }
